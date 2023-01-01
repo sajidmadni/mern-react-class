@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';;
 
 
 const Users = ({title}) => {
@@ -37,6 +38,7 @@ const Users = ({title}) => {
     return (
         <div>
             <h1>{title}</h1>
+            <Button variant="primary">Primary</Button>
             <input 
             type="text"
             defaultValue={searchValue} 

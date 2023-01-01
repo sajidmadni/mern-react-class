@@ -2,13 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { BrowserRouter } from 'react-router-dom';
+// Import redux providers
+import { Provider } from 'react-redux';
+// import redux store
+import { store } from './store/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
-  <App />
+  <React.StrictMode>
+    <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );
 
