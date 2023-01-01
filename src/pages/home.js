@@ -4,25 +4,46 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Col } from 'react-bootstrap';
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+// import { usersAsync } from '../app/userSlice';
+import { 
+    productsAsync, 
+    selectProducts,
+    increment
+} from '../app/productsSlice';
 
 
 const Home =  () => {
+    const getInitialProducts = useSelector(selectProducts);
+    
     const [currentProducts, setCurrentProducts] = useState([]);
-    // dispatch(setProducts2())
-
-    // dispatch(setProducts(productsObj));
+    const dispatch = useDispatch();
+    // dispatch(usersAsync())
 
     useEffect(() =>{
-        console.log("API UseEffect fired!!!")
-        fetch("https://dummyjson.com/products")
-        .then(response => response.json())
-        .then((data) => {
-            console.log("Get data from API")
-            console.log(data.products)
-            setCurrentProducts(data.products);
-        })
+        // console.log("API UseEffect fired!!!")
+        // fetch("https://dummyjson.com/products")
+        // .then(response => response.json())
+        // .then((data) => {
+        //     console.log("Get data from API")
+        //     console.log(data.products)
+        //     setCurrentProducts(data.products);
+            
+        // })
+        dispatch(productsAsync())
     }, []);
 
+    useEffect(() =>{
+        setCurrentProducts(getInitialProducts)
+    }, [getInitialProducts]);
+
+    const addToCart = () => {
+        // Update cart counter state
+        dispatch(increment())
+        console.log("Click to add cart")
+    }
+        
 
   return (
     <div>
@@ -36,7 +57,7 @@ const Home =  () => {
                                         <Card.Body>
                                             <Card.Title>{product.title}</Card.Title>
                                             <Card.Text>{product.description}</Card.Text>
-                                            <Button variant="primary">Go somewhere</Button>
+                                            <Button variant="primary" onClick={addToCart}>Add to Cart</Button>
                                         </Card.Body>
                                     </Card>
                                 </Col>      
