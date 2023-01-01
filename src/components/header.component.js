@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+// Redux
+import { useSelector } from 'react-redux';
+import { 
+    selectCount
+} from '../app/productsSlice';
 
 
 const Header =  () => {
-    const [cartCounter, setCartCounter] = useState(30);
+    const getCartCounter = useSelector(selectCount);    
+    const [cartCounter, setCartCounter] = useState(getCartCounter);
+
+    useEffect( () => {
+        setCartCounter(getCartCounter)
+    },[getCartCounter])
 
   return (
     <div>  
