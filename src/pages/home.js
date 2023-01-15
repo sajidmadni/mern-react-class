@@ -20,6 +20,12 @@ const Home =  () => {
     const [currentProducts, setCurrentProducts] = useState([]);
     const dispatch = useDispatch();
     // dispatch(usersAsync())
+    const getProducts = localStorage.getItem("product")
+    console.log("Get local storage data");
+    const parseData = JSON.parse(getProducts)
+    console.log(getProducts)
+    console.log(parseData)
+    // parseData.map()
 
     useEffect(() =>{
         // console.log("API UseEffect fired!!!")
@@ -32,6 +38,22 @@ const Home =  () => {
             
         // })
         dispatch(productsAsync())
+        console.log("Get local storage items");
+        const prodObj = {
+            brand: "New Value",
+            category: "Test One",
+            description: "Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,",
+            discountPercentage: 4.09,
+            id: 31,
+            images: ["https://i.dummyjson.com/data/products/17/1.jpg", "https://i.dummyjson.com/data/products/17/2.jpg"],
+            price: 12,
+            rating: 4.52,
+            stock: 78,
+            thumbnail: "https://i.dummyjson.com/data/products/17/thumbnail.jpg",
+            title: "Tree Oil 30ml"
+        };
+        localStorage.setItem("product", JSON.stringify(prodObj));
+        localStorage.setItem("test", "abc");
     }, []);
 
     useEffect(() =>{
