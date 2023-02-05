@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { initialState } from './states';
+import { initialState } from './product_states';
 
 export const productsAsync = createAsyncThunk(
     'products/fetchProducts',
@@ -13,7 +13,7 @@ export const productsAsync = createAsyncThunk(
 );
 
 export const productsSlice = createSlice({
-    name: 'app',
+    name: 'products',
     initialState,
     reducers: {
         increment: (state) => {
@@ -35,9 +35,9 @@ export const productsSlice = createSlice({
     },
 });
 
-export const selectProducts = (state) => state.app.products;
+export const selectProducts = (state) => state.products.products;
 
-export const selectCount = (state) => state.app.cartCounter;
+export const selectCount = (state) => state.products.cartCounter;
 
 export const { increment } = productsSlice.actions;
 
