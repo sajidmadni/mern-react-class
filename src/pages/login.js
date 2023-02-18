@@ -41,8 +41,8 @@ const Login =  () => {
         formData.append("password", formDataValues.password);
         formData.append("image", file);
         // console.log(formData.get('email'))
-
-        fetch('http://localhost:5000/api/users/login', {
+        console.log(process.env.REACT_APP_BACKEND_URL)
+        fetch(process.env.REACT_APP_BACKEND_URL+'/api/users/login', {
             method: 'POST',
             // headers: {
             //     'Content-Type': 'application/json'

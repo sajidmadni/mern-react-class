@@ -17,12 +17,16 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
       loggedInUser: (state, action) => {
-        console.log("Get redux toolkit loggedInUser")
-        console.log(action.payload)
         state.isLoggedin = true;
         state.loggedInUser = action.payload;
         localStorage.setItem("isAuth", state.isLoggedin);
         localStorage.setItem("loggedUser", JSON.stringify(state.loggedInUser));
+      },
+      logoutUser: (state, action) => {
+        state.isLoggedin = false;
+        state.loggedInUser = action.payload;
+        localStorage.setItem("isAuth", false);
+        localStorage.setItem("loggedUser", []);
       }
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -36,7 +40,7 @@ export const userSlice = createSlice({
     },
 });
 
-export const { loggedInUser } = userSlice.actions;
+export const { loggedInUser, logoutUser } = userSlice.actions;
 export const getLoggedInUser = (state) => state.users.loggedInUser;
 export const isAuthenticate = (state) => state.users.isLoggedin;
 export default userSlice.reducer;
